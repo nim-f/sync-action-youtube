@@ -24,7 +24,7 @@ jobs:
         run: | 
           git fetch origin 
           git checkout develop 
-          git merge master 
+          git merge master -X theirs 
           git push origin develop
-          
+
 
