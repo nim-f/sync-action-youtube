@@ -20,10 +20,9 @@ jobs:
           git config --global user.email 'mytestemail@gmail.com'     
           
       - name: Push changes to develop when master is updated
-        if: github.ref === 'refs/head/master'
+        if: github.ref == 'refs/head/master'
         run: |
           git fetch origin 
           git checkout develop 
           git merge master 
           git push origin develop
-              
