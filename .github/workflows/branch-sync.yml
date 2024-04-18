@@ -1,0 +1,29 @@
+name: Sync master to develop
+
+on: 
+  push: 
+    branches:
+      - master 
+
+jobs: 
+  branch-sync:
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v4     
+        with: 
+          fetch-depth: 0 
+
+      - name: Set up git 
+        run: | 
+          git config --global user.name 'Anna'
+          git config --global user.email 'mytestemail@gmail.com'     
+          
+      - name: Push changes to develop when master is updated
+        if: github.ref === 'refs/head/master'
+        run: |
+          git fetch origin 
+          git checkout develop 
+          git merge master 
+          git push origin develop
+              
